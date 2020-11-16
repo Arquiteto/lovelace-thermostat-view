@@ -1,0 +1,157 @@
+type: entities
+entities:
+  - entity: climate.salon
+    type: 'custom:multiple-entity-row'
+    show_state: false
+    entities:
+      - entity: binary_sensor.salon_okno_sofa
+        name: Sofa
+        icon: true
+        state_color: true
+      - entity: sensor.salon_okno_prawe
+        name: Stół
+        icon: true
+        state_color: true
+      - entity: climate.salon
+        attribute: temperature
+        name: Nastawa
+        unit: °C
+      - entity: climate.salon
+        attribute: current_temperature
+        name: Obecna
+        unit: °C
+  - entity: climate.salon
+    type: 'custom:slider-entity-row'
+    full_row: true
+    hide_state: true
+    min: 15
+    max: 25
+    step: 0.5
+  - type: 'custom:paper-buttons-row'
+    base_config:
+      style:
+        button:
+          border-radius: 10px
+        icon:
+          color: grey
+          '--mdc-icon-size': 25px
+    buttons:
+      - icon: 'mdi:fire'
+        entity: sensor.salon_tryb_ogrzewania
+        name: false
+        state_styles:
+          Heating:
+            icon:
+              color: orange
+            button:
+              background-color: var(--table-row-alternative-background-color)
+          Idle:
+            icon:
+              color: var(--paper-item-icon-idle-color)
+            button:
+              background-color: var(--table-row-alternative-background-color)
+        tap_action:
+          action: call-service
+          service: script.salon_grzanie
+      - icon: 'mdi:exit-run'
+        entity: sensor.salon_tryb_ogrzewania
+        name: false
+        state_styles:
+          Away:
+            icon:
+              color: green
+            button:
+              background-color: var(--table-row-alternative-background-color)
+        tap_action:
+          action: call-service
+          service: script.salon_poza_domem
+      - icon: 'mdi:power'
+        entity: sensor.salon_tryb_ogrzewania
+        name: false
+        state_styles:
+          'Off':
+            icon:
+              color: red
+            button:
+              background-color: var(--table-row-alternative-background-color)
+        tap_action:
+          action: call-service
+          service: script.salon_wylacz
+  - type: divider
+  - entity: climate.sypialnia
+    type: 'custom:multiple-entity-row'
+    show_state: false
+    entities:
+      - entity: binary_sensor.sypialnia_okno_lewe
+        name: Lewe
+        icon: true
+        state_color: true
+      - entity: binary_sensor.sypialnia_okno_prawe
+        name: Prawe
+        icon: true
+        state_color: true
+      - entity: climate.sypialnia
+        attribute: temperature
+        name: Nastawa
+        unit: °C
+      - entity: climate.sypialnia
+        attribute: current_temperature
+        name: Obecna
+        unit: °C
+  - entity: climate.sypialnia
+    type: 'custom:slider-entity-row'
+    full_row: true
+    hide_state: true
+    min: 15
+    max: 25
+    step: 0.5
+  - type: 'custom:paper-buttons-row'
+    base_config:
+      style:
+        button:
+          border-radius: 10px
+        icon:
+          color: grey
+          '--mdc-icon-size': 25px
+    buttons:
+      - icon: 'mdi:fire'
+        entity: sensor.sypialnia_tryb_ogrzewania
+        name: false
+        state_styles:
+          Heating:
+            icon:
+              color: orange
+            button:
+              background-color: var(--table-row-alternative-background-color)
+          Idle:
+            icon:
+              color: var(--paper-item-icon-idle-color)
+            button:
+              background-color: var(--table-row-alternative-background-color)
+        tap_action:
+          action: call-service
+          service: script.sypialnia_grzanie
+      - icon: 'mdi:exit-run'
+        entity: sensor.sypialnia_tryb_ogrzewania
+        name: false
+        state_styles:
+          Away:
+            icon:
+              color: green
+            button:
+              background-color: var(--table-row-alternative-background-color)
+        tap_action:
+          action: call-service
+          service: script.sypialnia_poza_domem
+      - icon: 'mdi:power'
+        entity: sensor.sypialnia_tryb_ogrzewania
+        name: false
+        state_styles:
+          'Off':
+            icon:
+              color: red
+            button:
+              background-color: var(--table-row-alternative-background-color)
+        tap_action:
+          action: call-service
+          service: script.sypialnia_wylacz
