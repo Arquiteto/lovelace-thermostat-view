@@ -1,0 +1,36 @@
+salon_grzanie:
+  alias: Salon grzanie
+  sequence:
+  - service: climate.set_preset_mode
+    data:
+      entity_id: climate.salon
+      preset_mode: none
+  - service: climate.set_hvac_mode
+    data:
+      entity_id: climate.salon
+      hvac_mode: heat
+  mode: single  
+salon_poza_domem:
+  alias: Salon poza domem
+  sequence:
+  - service: climate.set_preset_mode
+    data:
+      entity_id: climate.salon
+      preset_mode: away
+  - service: climate.set_hvac_mode
+    data:
+      entity_id: climate.salon
+      hvac_mode: heat
+  mode: single    
+salon_wylacz:
+  alias: Salon wyłącz
+  sequence:
+  - service: climate.set_preset_mode
+    data:
+      entity_id: climate.salon
+      preset_mode: none
+  - service: climate.set_hvac_mode
+    data:
+      entity_id: climate.salon
+      hvac_mode: 'off'
+  mode: single 
