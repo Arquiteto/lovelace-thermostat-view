@@ -1,0 +1,35 @@
+sensor:
+  - platform: template
+    sensors:
+
+# Tryb ogrzwania
+      salon_tryb_ogrzewania:
+        friendly_name: Tryb ogrzewania salon
+        value_template: >-
+          {% if is_state_attr('climate.salon', 'preset_mode', 'none') -%}
+            {% if is_state('climate.salon', 'heat') -%}
+              {% if is_state_attr('climate.salon', 'hvac_action', 'heating') -%}
+                Heating
+              {%- elif is_state_attr('climate.salon', 'hvac_action', 'idle') -%}
+                Idle
+              {%- endif %}
+            {%- elif is_state('climate.salon', 'off') -%}
+              Off
+            {%- endif %}
+          {%- elif is_state_attr('climate.salon', 'preset_mode', 'away') -%}
+            Away
+          {%- endif %}
+        icon_template: >-
+          {% if is_state_attr('climate.salon', 'preset_mode', 'none') -%}
+            {% if is_state('climate.salon', 'heat') -%}
+              {% if is_state_attr('climate.salon', 'hvac_action', 'heating') -%}
+                mdi:radiator
+              {%- elif is_state_attr('climate.salon', 'hvac_action', 'idle') -%}
+                mdi:radiator-disabled
+              {%- endif %}
+            {%- elif is_state('climate.salon', 'off') -%}
+              mdi:power
+            {%- endif %}
+          {%- elif is_state_attr('climate.salon', 'preset_mode', 'away') -%}
+            mdi:exit-run
+          {%- endif %}
